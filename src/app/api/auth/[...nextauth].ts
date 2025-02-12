@@ -109,9 +109,8 @@ const nextAuthOptions: NextAuthOptions = {
       profileUrl: `https://api.zaim.net/v2/home/user/verify`,
       async profile(profile, credentials) {
         return {
-          id: profile.id,
-          name: profile.name,
-          email: profile.email,
+          id: profile.me.id,
+          name: profile.me.name,
           image: null,
         };
       },
@@ -124,7 +123,6 @@ const nextAuthOptions: NextAuthOptions = {
       return true
     },
     async redirect({ url, baseUrl }) {
-      console.log(url)
       return url
     },
     async session({ session, user, token }) {
