@@ -1,4 +1,5 @@
 import SignIn from "./components/signin";
+import CSVUploader from "./components/CSVUploader";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </p>
       <div className="flex flex-col gap-4"> 
         <SignIn />
+        <CSVUploader />
       </div>
     </div>
   );
