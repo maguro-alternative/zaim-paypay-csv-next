@@ -16,7 +16,8 @@
     "oauth-1.0a": "^2.2.6",
     "papaparse": "^5.5.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
