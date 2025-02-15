@@ -1,13 +1,9 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { signIn, signOut, useSession, SessionProvider } from "next-auth/react";
-import { getServerSession } from "next-auth/next";
 import { ZaimOAuth } from "../oauth";
+import type { Session } from "next-auth";
 
-import nextAuthOptions from "../../app/api/auth/[...nextauth]";
+import { CategoryResponse } from "./types";
 
-
-export async function fetchData() {
-  const session = await getServerSession(nextAuthOptions);
+export async function fetchCategorysData(session: Session | null) {
   const authHeader = ZaimOAuth.toHeader(
     ZaimOAuth.authorize(
       {
@@ -25,5 +21,5 @@ export async function fetchData() {
       ...authHeader,
     }
   });
-  return res.json();
-}
+  return res.json() as Promise<CategoryResponse>;
+};
