@@ -33,4 +33,4 @@ export async function registerIncomesData(
     console.error("Failed to register income data:", error);
     throw error;
   }
-}
+};
