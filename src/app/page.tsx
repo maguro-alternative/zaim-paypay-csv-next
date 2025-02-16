@@ -5,6 +5,19 @@ import SignOut from "./components/signout";
 import CSVUploader from "./components/CSVUploader";
 import nextAuthOptions from "../app/api/auth/[...nextauth]";
 
+// 🌟 Static Metadata
+export const metadata = {
+  openGraph: {
+    title: "Zaim PayPay連携",
+    description: "ZaimとPayPayを連携して、支出データを自動で取得します。",
+    images: [{
+      url: "/ogp/uchuemon.jpg", // 🌟 静的画像の指定
+      width: 1200,
+      height: 630
+    }],
+  },
+};
+
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
   return (
