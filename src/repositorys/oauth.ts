@@ -1,5 +1,3 @@
-import { promisify } from "util";
-
 import oauth from "oauth";
 
 export const ZaimOAuth = new oauth.OAuth(
@@ -11,5 +9,3 @@ export const ZaimOAuth = new oauth.OAuth(
   null,
   "HMAC-SHA1"
 );
-
-export const ZaimGetAsync = promisify(ZaimOAuth.get).bind(ZaimOAuth);
