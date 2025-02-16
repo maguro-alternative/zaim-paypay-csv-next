@@ -9,6 +9,7 @@ export async function getCategorysData(session: Session | null) {
       "https://api.zaim.net/v2/home/category",
       session?.user?.accessToken as string,
       session?.user?.accessTokenSecret as string,
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       (err: any, data: any) => {
         if (err) {
           reject(err);
