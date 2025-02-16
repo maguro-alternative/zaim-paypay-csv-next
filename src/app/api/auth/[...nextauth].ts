@@ -49,7 +49,7 @@ const nextAuthOptions: NextAuthOptions = {
       authorization: `https://auth.zaim.net/users/auth`,
       accessTokenUrl: `https://api.zaim.net/v2/auth/access`,
       profileUrl: `https://api.zaim.net/v2/home/user/verify`,
-      async profile(profile, tokens) {
+      async profile(profile) {
         return {
           id: profile.me.id,
           name: profile.me.name,
@@ -64,22 +64,22 @@ const nextAuthOptions: NextAuthOptions = {
     },
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ user, account }) {
       user.accessToken = account?.access_token;
       user.accessTokenSecret = account?.access_token_secret as string | undefined;
       return true
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({ url }) {
       return url
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, account }) {
       if (account) {
         token.accessToken = account.oauth_token as string | undefined;
         token.accessTokenSecret = account.oauth_token_secret as string | undefined;
       }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       return {
         ...session,
         user: {
@@ -88,11 +88,6 @@ const nextAuthOptions: NextAuthOptions = {
           accessTokenSecret: token.accessTokenSecret,
         },
       }
-    },
-  },
-  events: {
-    session(message) {
-      // console.log('session message', message)
     },
   },
   debug: process.env.NODE_ENV === 'development',
