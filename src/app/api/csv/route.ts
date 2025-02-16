@@ -62,6 +62,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // CSV を解析して変数に格納
     const rows = Papa.parse<CsvData>(text, { header: true }).data;
 
+    // スキーマを使用してバリデーションを行う
+    const validationResult = CsvDataSchema.safeParse(rows);
+    
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: 'Invalid CSV format', details: validationResult.error },
+        { status: 400 }
+      );
+    }
+
     // データをZaimに登録
     for (let i = 0; i < rows.length; i++) {
       const d = new Date(rows[i]["取引日"]);
