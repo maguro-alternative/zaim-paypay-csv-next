@@ -3,23 +3,23 @@ import type { Session } from "next-auth";
 
 import { CategoryResponse } from "./types";
 
-export async function fetchCategorysData(session: Session | null) {
-  const authHeader = ZaimOAuth.toHeader(
-    ZaimOAuth.authorize(
-      {
-        url: "https://api.zaim.net/v2/home/category",
-        method: "GET",
-      },
-      {
-        key: session?.user?.accessToken as string,
-        secret: session?.user?.accessTokenSecret as string,
+export async function getCategorysData(session: Session | null) {
+  const categoryAsync: Promise<CategoryResponse> = new Promise((resolve, reject) => {
+    ZaimOAuth.get(
+      "https://api.zaim.net/v2/home/category",
+      session?.user?.accessToken as string,
+      session?.user?.accessTokenSecret as string,
+      (err: any, data: any) => {
+        if (err) {
+          reject(err);
+        } else {
+          // 文字列として返ってくるデータをJSONとしてパースし、型を適用
+          const parsedData = JSON.parse(data) as CategoryResponse;
+          resolve(parsedData);
+        }
       }
-    )
-  );
-  const res = await fetch("https://api.zaim.net/v2/home/category", {
-    headers: {
-      ...authHeader,
-    }
+    );
   });
-  return res.json() as Promise<CategoryResponse>;
+
+  return categoryAsync;
 };
