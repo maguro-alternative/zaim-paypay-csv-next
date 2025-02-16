@@ -17,6 +17,7 @@ export async function registerPaymentsData(
         session?.user?.accessTokenSecret as string,
         requestJson,
         "application/json",
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         (err: any, data: any) => {
           if (err) {
             reject(err);
