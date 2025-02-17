@@ -63,11 +63,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const rows = Papa.parse<CsvData>(text, { header: true }).data;
 
     // スキーマを使用してバリデーションを行う
-    const validationResult = CsvDataSchema.safeParse(rows);
+    const validationResult = rows.map((data) => CsvDataSchema.safeParse(data));
+    const hasError = validationResult.some((result) => !result.success);
     
-    if (!validationResult.success) {
+    if (hasError) {
       return NextResponse.json(
-        { error: 'Invalid CSV format', details: validationResult.error },
+        { error: 'Invalid CSV format', details: validationResult },
         { status: 400 }
       );
     }
