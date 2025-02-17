@@ -7,11 +7,13 @@ import nextAuthOptions from "../app/api/auth/[...nextauth]";
 
 // 🌟 Static Metadata
 export const metadata = {
+  title: "Zaim PayPay連携",
+  description: "ZaimとPayPayを連携して、支出データを自動で取得します。",
   openGraph: {
     title: "Zaim PayPay連携",
     description: "ZaimとPayPayを連携して、支出データを自動で取得します。",
     images: [{
-      url: "/ogp/uchuemon.jpg", // 🌟 静的画像の指定
+      url: "/ogp/uchuemon.png", // 🌟 静的画像の指定
       width: 1200,
       height: 630
     }],

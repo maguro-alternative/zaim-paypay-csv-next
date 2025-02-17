@@ -1,0 +1,13 @@
+{
+  "name": "Zaim PayPay連携",
+  "short_name": "Zaim PayPay連携",
+  "description": "ZaimとPayPayを連携して、支出データを自動で取得します。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "icons": [
+    { "src": "/ogp/uchuemon.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/ogp/uchuemon.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
