@@ -3,6 +3,8 @@ import { useState } from "react";
 import Papa from "papaparse";
 import { z } from "zod";
 
+import { accountResponse } from "@/repositorys/accounts/types";
+
 // CSVの各フィールドに対応する型を定義
 const CsvDataSchema = z.object({
   "取引日": z.string(),
@@ -22,7 +24,9 @@ const CsvDataSchema = z.object({
 
 type CsvData = z.infer<typeof CsvDataSchema>;
 
-export default function CSVUploader() {
+export default function CSVUploaderForm(
+  { accounts }: { accounts: accountResponse }
+) {
   const [csvData, setCsvData] = useState<CsvData[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -90,6 +94,14 @@ export default function CSVUploader() {
     <div>
       <h2>CSV Uploader</h2>
       <form onSubmit={handleSubmit}>
+        <select name="account">
+          <option value="">口座を選択してください</option>
+          {accounts.accounts.map((account) => (
+            <option key={account.id} value={account.id}>
+              {account.name}
+            </option>
+          ))}
+        </select>
         <input type="file" accept=".csv" onChange={handleFileUpload} />
         {error && <div style={{ color: "red" }}>{error}</div>}
         {csvData.length > 0 && (
@@ -99,7 +111,7 @@ export default function CSVUploader() {
           </div>
         )}
         <br />
-        <input type="submit" />
+        <button type="submit">送信</button>
       </form>
     </div>
   );
