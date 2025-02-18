@@ -28,6 +28,9 @@ const CsvDataSchema = z.object({
 
 type CsvData = z.infer<typeof CsvDataSchema>;
 
+const CategoryId = 19;
+const GenreId = 1;
+
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const session = await getServerSession(nextAuthOptions);
   if (!session) {
@@ -39,6 +42,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const account = formData.get('account') as unknown as number;
+
+    console.log(formData)
 
     // ファイルが存在しない場合のエラーハンドリング
     if (!file) {
@@ -80,10 +86,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       if (rows[i]["出金金額（円）"] === '-') {
         const incomeData: Income = {
           mapping: i+1,
-          category_id: 19,
+          category_id: CategoryId,
           amount: rows[i]["入金金額（円）"].replaceAll(/,/g, '') as unknown as number,
           date: formattedDate,
-          to_account_id: 19642280,
+          to_account_id: account,
           place: rows[i]["取引先"],
           comment: rows[i]["取引内容"]
         };
@@ -92,11 +98,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       } else if (rows[i]["入金金額（円）"] === '-') {
         const paymentData: Payment = {
           mapping: i+1,
-          genre_id: 1,
-          category_id: 19,
+          genre_id: GenreId,
+          category_id: CategoryId,
           amount: rows[i]["出金金額（円）"].replaceAll(/,/g, '') as unknown as number,
           date: formattedDate,
-          from_account_id: 19642280,
+          from_account_id: account,
           comment: rows[i]["取引内容"],
           name: rows[i]["取引内容"],
           place: rows[i]["取引先"]
