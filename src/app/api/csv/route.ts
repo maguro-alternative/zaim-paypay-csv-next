@@ -44,8 +44,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const file = formData.get('file') as File;
     const account = formData.get('account') as unknown as number;
 
-    console.log(formData)
-
     // ファイルが存在しない場合のエラーハンドリング
     if (!file) {
       return NextResponse.json(
@@ -93,7 +91,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           place: rows[i]["取引先"],
           comment: rows[i]["取引内容"]
         };
-        console.log("incomeData", incomeData);
+        // console.log("incomeData", incomeData);
         await registerIncomesData(session, incomeData);
       } else if (rows[i]["入金金額（円）"] === '-') {
         const paymentData: Payment = {
@@ -107,7 +105,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           name: rows[i]["取引内容"],
           place: rows[i]["取引先"]
         };
-        console.log("paymentData", paymentData);
+        // console.log("paymentData", paymentData);
         await registerPaymentsData(session, paymentData);
       }
     };
