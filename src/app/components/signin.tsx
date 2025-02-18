@@ -5,7 +5,7 @@ export default function SignIn() {
   return (
     <button
       className="p-2 bg-blue-500 text-white rounded-md"
-      onClick={() => signIn("zaim", { callbackUrl: "http://localhost:3000" })}
+      onClick={() => signIn("zaim")}
     >
       Sign in with Zaim
     </button>
