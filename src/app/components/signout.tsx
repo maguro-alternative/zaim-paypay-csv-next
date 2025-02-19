@@ -10,7 +10,11 @@ export default function SignOut({ session }: SignOutProps) {
   return (
     <div>
       <p>Signed in as {session?.user?.name}</p>
-      <img src={session?.user?.image} alt={session?.user?.name} />
+      <img 
+        src={session?.user?.image} 
+        alt={session?.user?.name} 
+        className="w-10 h-10 rounded-full object-cover"
+      />
       <button
         className="p-2 bg-red-500 text-white rounded-md"
         onClick={() => signOut()}
