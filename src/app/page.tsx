@@ -4,7 +4,9 @@ import SignIn from "./components/signin";
 import SignOut from "./components/signout";
 import CSVUploaderForm from "./components/CSVUploaderForm";
 import { getAccountsData } from "@/repositorys/accounts/hooks-accounts";
+import { getVerifyData } from "@/repositorys/verify/hooks-verify";
 import nextAuthOptions from "../app/api/auth/[...nextauth]";
+import { signOut } from "next-auth/react";
 
 // 🌟 Static Metadata
 export const metadata = {
@@ -23,6 +25,13 @@ export const metadata = {
 
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
+  if (session) {
+    try {
+      await getVerifyData(session);
+    } catch (error) {
+      signOut();
+    }
+  }
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-teal-200">
       <h1 className="text-4xl font-bold">Zaim PayPay連携</h1>
