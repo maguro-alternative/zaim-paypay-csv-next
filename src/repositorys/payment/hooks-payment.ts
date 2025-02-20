@@ -22,6 +22,7 @@ export async function registerPaymentsData(
           if (err) {
             reject(err);
           } else {
+            // ToDO: Fix the type of parsedData
             const parsedData = JSON.parse(data) as PaymentResponse;
             resolve(parsedData);
           }
@@ -31,6 +32,7 @@ export async function registerPaymentsData(
 
     return paymentAsync;
   } catch (error) {
+    // ToDo: Fix the type of error
     console.error("Failed to register payment data:", error);
     throw error;
   }
