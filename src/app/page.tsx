@@ -28,7 +28,7 @@ export default async function Home() {
   if (session) {
     try {
       await getVerifyData(session);
-    } catch (error) {
+    } catch (_) {
       signOut();
     }
   }
