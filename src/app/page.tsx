@@ -6,7 +6,6 @@ import CSVUploaderForm from "./components/CSVUploaderForm";
 import { getAccountsData } from "@/repositorys/accounts/hooks-accounts";
 import { getVerifyData } from "@/repositorys/verify/hooks-verify";
 import nextAuthOptions from "../app/api/auth/[...nextauth]";
-import { signOut } from "next-auth/react";
 
 // 🌟 Static Metadata
 export const metadata = {
