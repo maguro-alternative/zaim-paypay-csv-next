@@ -4,7 +4,7 @@ import { VerifyResponse } from "./types";
 
 export async function getVerifyData(session: Session | null): Promise<VerifyResponse> {
   try {
-    const verifyAsync: Promise<VerifyResponse> = new Promise((resolve, reject) => {
+    const verifyAsync: Promise<VerifyResponse> = new Promise((resolve) => {
       ZaimOAuth.get(
         "https://api.zaim.net/v2/home/user/verify",
         session?.user?.accessToken as string,
