@@ -4,7 +4,7 @@ import { VerifyResponse } from "./types";
 
 export async function getVerifyData(session: Session | null): Promise<VerifyResponse> {
   try {
-    const verifyAsync: Promise<VerifyResponse> = new Promise((resolve) => {
+    const verifyAsync: Promise<VerifyResponse> = new Promise((resolve, reject) => {
       ZaimOAuth.get(
         "https://api.zaim.net/v2/home/user/verify",
         session?.user?.accessToken as string,
@@ -12,7 +12,8 @@ export async function getVerifyData(session: Session | null): Promise<VerifyResp
         /* eslint-disable @typescript-eslint/no-explicit-any */
         (err: any, data: any) => {
           if (err) {
-            console.log("Failed to get verify data:", err);
+            console.error("Failed to get verify data:", err);
+            reject(err);
           } else {
             const parsedData = JSON.parse(data) as VerifyResponse;
             resolve(parsedData);

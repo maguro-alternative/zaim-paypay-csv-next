@@ -29,7 +29,23 @@ export default async function Home() {
     try {
       await getVerifyData(session);
     } catch {
-      signOut();
+      return (
+        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-teal-200">
+          <h1 className="text-4xl font-bold">Zaim PayPay連携</h1>
+          <p className="text-lg text-center">
+            Zaim APIでPayPayを連携して、支出データを自動で取得します。
+          </p>
+          <p className="text-lg text-center text-red-500">
+            連携に失敗しました。再度ログインしてください。
+          </p>
+          <button
+            className="p-2 bg-blue-500 text-white rounded-md"
+            onClick={() => signOut()}
+          >
+            ログアウト
+          </button>
+        </div>
+      );
     }
   }
   return (
