@@ -38,12 +38,7 @@ export default async function Home() {
           <p className="text-lg text-center text-red-500">
             連携に失敗しました。再度ログインしてください。
           </p>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md"
-            onClick={() => signOut()}
-          >
-            ログアウト
-          </button>
+          <SignOut session={session} />
         </div>
       );
     }
