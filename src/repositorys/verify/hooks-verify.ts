@@ -11,6 +11,7 @@ export async function getVerifyData(session: Session | null): Promise<VerifyResp
       /* eslint-disable @typescript-eslint/no-explicit-any */
       (err: any, data: any) => {
         if (err) {
+          console.error("Failed to get verify data:", err);
           reject(err);
         } else {
           const parsedData = JSON.parse(data) as VerifyResponse;
