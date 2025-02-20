@@ -5,9 +5,9 @@ export interface Payment {
   amount: number;
   date: string;
   from_account_id: number;
-  place: string;
   comment: string;
   name: string;
+  place: string;
 };
 
 interface money {
