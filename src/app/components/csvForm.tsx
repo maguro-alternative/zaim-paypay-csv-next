@@ -128,6 +128,10 @@ export default function CSVForm(
     const category = event.currentTarget.value;
 
     const newCategoryGenreSchemas = categoryGenreSchemas?.map((schema) => {
+      const validationResult = CategotyGenreSchema.safeParse(schema);
+      if (!validationResult.success) {
+        return schema;
+      }
       if (schema.transactionId === transactionId) {
         return {
           ...schema,
@@ -148,6 +152,10 @@ export default function CSVForm(
     const genre = event.currentTarget.value;
 
     const newCategoryGenreSchemas = categoryGenreSchemas?.map((schema) => {
+      const validationResult = CategotyGenreSchema.safeParse(schema);
+      if (!validationResult.success) {
+        return schema;
+      }
       if (schema.transactionId === transactionId) {
         return {
           ...schema,
