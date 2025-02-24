@@ -110,7 +110,7 @@ export default function CSVUploaderForm(
     formData.append("account", event.currentTarget.account.value);
 
     try {
-      const response = await fetch("/api/csv", {
+      const response = await fetch("/api/v1/csv", {
         method: "POST",
         body: formData,
       });
@@ -179,10 +179,35 @@ export default function CSVUploaderForm(
         {error && <div style={{ color: "red" }}>{error}</div>}
         {csvData.length > 0 && (
           <div>
-            <h3>CSV Data:</h3>
-            <pre className="bg-gray-100 p-4 rounded overflow-auto">
-              {JSON.stringify(csvData, null, 2)}
-            </pre>
+          {csvData.length > 0 && (
+            <div>
+              <h3 className="mb-2">CSV Data:</h3>
+              <div className="overflow-auto">
+                <table className="min-w-full border-collapse border border-gray-300">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      {Object.keys(csvData[0]).map((key) => (
+                        <th key={key} className="px-4 py-2 border border-gray-300 text-left text-sm font-medium">
+                          {key}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {csvData.map((row, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        {Object.values(row).map((value, cellIndex) => (
+                          <td key={cellIndex} className="px-4 py-2 border border-gray-300 text-sm">
+                            {value}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
           </div>
         )}
         <br />

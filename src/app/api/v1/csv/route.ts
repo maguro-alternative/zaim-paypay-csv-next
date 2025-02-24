@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next";
 import Papa from "papaparse";
 import { z } from "zod";
 
-import nextAuthOptions from "../auth/[...nextauth]";
+import nextAuthOptions from "../../auth/[...nextauth]";
 import { registerIncomesData } from "@/repositorys/income/hooks-income";
 import { Income } from "@/repositorys/income/types";
 import { registerPaymentsData } from "@/repositorys/payment/hooks-payment";
