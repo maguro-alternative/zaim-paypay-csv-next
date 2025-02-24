@@ -40,7 +40,7 @@ const CategotyGenreSchema = z.object({
   transactionId: z.string(),
   categoryId: z.string().default("19"),
   genreId: z.string().default("1")
-})
+});
 
 type CsvData = z.infer<typeof CsvDataSchema>;
 
