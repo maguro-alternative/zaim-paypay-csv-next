@@ -288,13 +288,11 @@ export default function CSVForm(
                         ))}
                         <td className="px-4 py-2 border border-gray-300 text-sm">
                           {row["入金金額（円）"] === "-" ? 
-                            <select name={`genre_${index}`} className="p-2 border rounded" onChange={(e) => {
+                            <select name={`genre_${index}`} className="p-2 border rounded" defaultValue={19999} onChange={(e) => {
                               handleGenreSelect(e, row["取引番号"])
                             }}>
                               {genres.genres.map((genre) => (
-                                <option key={genre.id} value={genre.id}
-                                  selected={genre.name === "その他"}
-                                >
+                                <option key={genre.id} value={genre.id}>
                                   {genre.name}
                                 </option>
                               ))}
@@ -302,11 +300,11 @@ export default function CSVForm(
                           : row["取引内容"]}
                         </td>
                         <td className="px-4 py-2 border border-gray-300 text-sm">
-                          <select name={`category_${index}`} className="p-2 border rounded" onChange={(e) => {
+                          <select name={`category_${index}`} className="p-2 border rounded" value={19} onChange={(e) => {
                               handleCategorySelect(e, row["取引番号"])
                             }}>
                             {categories.categories.map((category) => (
-                              <option key={category.id} value={category.id} selected={category.name === "その他"}>
+                              <option key={category.id} value={category.id}>
                                 {category.name}
                               </option>
                             ))}
