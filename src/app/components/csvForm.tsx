@@ -292,7 +292,9 @@ export default function CSVForm(
                               handleGenreSelect(e, row["取引番号"])
                             }}>
                               {genres.genres.map((genre) => (
-                                <option key={genre.id} value={genre.id}>
+                                <option key={genre.id} value={genre.id}
+                                  selected={genre.name === "その他"}
+                                >
                                   {genre.name}
                                 </option>
                               ))}
@@ -304,7 +306,7 @@ export default function CSVForm(
                               handleCategorySelect(e, row["取引番号"])
                             }}>
                             {categories.categories.map((category) => (
-                              <option key={category.id} value={category.id}>
+                              <option key={category.id} value={category.id} selected={category.name === "その他"}>
                                 {category.name}
                               </option>
                             ))}
