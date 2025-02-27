@@ -253,7 +253,7 @@ export default function CSVForm(
               ))}
             </ul>
           </div>
-        )}
+        )};
 
         {error && <div style={{ color: "red" }}>{error}</div>}
         {csvData.length > 0 && (
