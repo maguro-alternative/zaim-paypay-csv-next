@@ -261,8 +261,8 @@ export default function CSVForm(
           {csvData.length > 0 && (
             <div>
               <h3 className="mb-2">CSV Data:</h3>
-              <div className="overflow-auto">
-                <table className="min-w-full border-collapse border border-gray-300">
+              <div className="max-w-screen overflow-x-scroll">
+                <table className="min-w-max border-collapse border border-gray-300">
                   <thead>
                     <tr className="bg-gray-100">
                       {Object.keys(csvData[0]).map((key) => (
@@ -301,8 +301,8 @@ export default function CSVForm(
                         </td>
                         <td className="px-4 py-2 border border-gray-300 text-sm">
                           <select name={`category_${index}`} className="p-2 border rounded" value={19} onChange={(e) => {
-                              handleCategorySelect(e, row["取引番号"])
-                            }}>
+                            handleCategorySelect(e, row["取引番号"])
+                          }}>
                             {categories.categories.map((category) => (
                               <option key={category.id} value={category.id}>
                                 {category.name}
