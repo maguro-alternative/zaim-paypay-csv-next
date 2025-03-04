@@ -206,7 +206,7 @@ export default function CSVForm(
       console.error("送信エラー:", error);
       setError("データの送信中にエラーが発生しました。");
       alert("データの送信中にエラーが発生しました。");
-    }
+    };
   };
 
   return (
