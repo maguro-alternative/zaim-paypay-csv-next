@@ -166,7 +166,7 @@ export default function CSVForm(
     })
     if (newCategoryGenreSchemas) {
       setCategoryGenreSchemas(newCategoryGenreSchemas);
-    }
+    };
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
